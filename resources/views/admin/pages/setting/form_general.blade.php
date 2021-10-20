@@ -6,7 +6,7 @@ use App\Helpers\Template;
 $formInputAttr      = config('zvn.template.form_input');
 $formLabelAttr      = config('zvn.template.form_label');
 
-$inputHiddenTask      = Form::hidden('task', 'general');
+$inputHiddenTask      = Form::hidden('task', 'setting_general');
 
 $formTextarea       = sprintf('<textarea class="form-control" id="setting-general" name="introduce">%s</textarea>',@$settingGeneral['introduce']);
 $logo               = sprintf('
@@ -19,6 +19,9 @@ $logo               = sprintf('
     <img src="%s" id="holder" style="margin-top:15px;max-height:100px;" >
 ',@$settingGeneral['logo'],asset(@$settingGeneral['logo']));
 
+
+$inputHotline =  sprintf('<input class="form-control col-md-6 col-xs-12" name="hotline" type="text" value="%s" id="hotline" data-role="tagsinput">',@$settingGeneral['hotline']);
+
 $elements = [
     [
         'label'   => Form::label('logo', 'Logo', $formLabelAttr),
@@ -26,7 +29,7 @@ $elements = [
     ],
     [
         'label'   => Form::label('hotline', 'Hotline', $formLabelAttr),
-        'element' => Form::text('hotline', @$settingGeneral['hotline'],  $formInputAttr )
+        'element' => $inputHotline,
     ],
     [
         'label'   => Form::label('copyright', 'Copyright', $formLabelAttr),
@@ -46,7 +49,7 @@ $elements = [
     ],
     [
         'label'   => Form::label('map', 'Bản đồ', $formLabelAttr),
-        'element' => Form::text('map',@$settingGeneral['map'], $formInputAttr),
+        'element' => Form::textarea('map',@$settingGeneral['map'], $formInputAttr),
     ],
     [
         'element' => $inputHiddenTask  . Form::submit('Save', ['class'=>'btn btn-success']),
@@ -62,7 +65,7 @@ $elements = [
         <div class="x_content">
             {{ Form::open([
                 'method'         => 'POST', 
-                'url'            => route("$controllerName/general_setting"),
+                'url'            => route("$controllerName/save"),
                 'accept-charset' => 'UTF-8',
                 'enctype'        => 'multipart/form-data',
                 'class'          => 'form-horizontal form-label-left',

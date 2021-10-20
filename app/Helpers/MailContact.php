@@ -29,11 +29,6 @@ class MailContact
         //Lấy  email Admin
         $result = json_decode(SettingModel::where('key_value', 'setting_email_account')->first()['value'],true);
         $data['admin'] = $result['email_account'];
-
-        //Lấy mail bcc
-        $bccValue = json_decode(SettingModel::where('key_value', 'setting_email_bcc')->first()['value'],true);
-        $data['bcc'] = $bccValue['bcc'];
-
         $titleEmail = 'Thông báo : Có liên hệ từ người dùng';
 
         $content = [
@@ -42,11 +37,23 @@ class MailContact
             'phone' => $params['phone'],
             'contact' => $params['contact'],
         ];
-        Mail::send('news.pages.contact.emailtoBcc', $content, function ($message) use ($titleEmail, $data) {
-            $message->to($data['bcc'])->subject($titleEmail);
-            $message->from($data['admin'], $titleEmail);
-        });
-
+        //Lấy mail bcc
+        $bccValue = json_decode(SettingModel::where('key_value', 'setting_email_bcc')->first()['value'],true);
+        if($bccValue['bcc'] == null){
+            $data['bcc'] = 'dinhconglam2306@gmail.com';
+            Mail::send('news.pages.contact.emailtoBcc', $content, function ($message) use ($titleEmail, $data) {
+                $message->to($data['bcc'])->subject($titleEmail);
+                $message->from($data['admin'], $titleEmail);
+            });
+        }else{
+            $bccValue = explode(',',$bccValue['bcc']);
+            Mail::send('news.pages.contact.emailtoBcc', $content, function ($message) use ($titleEmail, $bccValue,$data) {
+                foreach ($bccValue as $bcc) {
+                    $message->to($bcc)->subject($titleEmail);
+                }
+                $message->from($data['admin'], $titleEmail);
+            });
+        }
     }
 
 }

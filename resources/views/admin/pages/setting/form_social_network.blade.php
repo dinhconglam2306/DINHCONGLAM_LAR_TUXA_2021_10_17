@@ -7,7 +7,7 @@
     $formLabelAttr      = config('zvn.template.form_label');
 
 
-    $inputHiddenTask      = Form::hidden('task', 'social');
+    $inputHiddenTask      = Form::hidden('task', 'setting_social');
     
     $elements = [
         [
@@ -36,7 +36,7 @@
                     'accept-charset' => 'UTF-8',
                     'enctype'        => 'multipart/form-data',
                     'class'          => 'form-horizontal form-label-left',
-                    'id'             => 'main-form' ])  }}
+                    'id'             => 'social-form' ])  }}
                     {!! FormTemplate::show($elements)  !!}
                 {{ Form::close() }}
             </div>

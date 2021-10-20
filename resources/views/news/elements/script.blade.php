@@ -1,5 +1,3 @@
-
-
 <script src="{{asset('news/js/jquery-3.2.1.min.js')}}"></script>
 <script src="{{asset('news/css/bootstrap-4.1.2/popper.js')}}"></script>
 <script src="{{asset('news/css/bootstrap-4.1.2/bootstrap.min.js')}}"></script>
@@ -11,5 +9,15 @@
 <script src="{{asset('news/js/OwlCarousel2-2.2.1/owl.carousel.js')}}"></script>
 <script src="{{asset('news/js/easing/easing.js')}}"></script>
 <script src="{{asset('news/js/parallax-js-master/parallax.min.js')}}"></script>
+<script src="{{ asset('dist/js/lightbox.min.js') }}"></script>
+<script src="{{ asset('jquery_validate/jquery.validate.min.js') }}"></script>
+
+
+<script>
+    lightbox.option({
+      'resizeDuration': 200,
+      'wrapAround': true
+    })
+</script>
 <script src="{{asset('news/js/custom.js')}}"></script>
 <script src="{{asset('news/js/my-js.js')}}"></script>

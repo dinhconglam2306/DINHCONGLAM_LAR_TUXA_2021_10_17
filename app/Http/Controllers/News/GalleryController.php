@@ -4,7 +4,7 @@ namespace App\Http\Controllers\News;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;;
-
+use Illuminate\Support\Facades\File;
 use App\Models\GalleryModel;
 use App\Helpers\Feed;
 
@@ -23,10 +23,9 @@ class GalleryController extends Controller
     public function index(Request $request)
     {
         view()->share('title', 'Thư viện hình ảnh');
-        $pathImages = public_path('/images/gallery');
-        $fileImages = array_diff(scandir($pathImages), array('.', '..'));
-        unset($fileImages[count($fileImages) +1]);
 
+        $fileImages = File::allFiles(public_path('/images/gallery'));
+        
         return view($this->pathViewController .  'index', [
            'fileImages' => $fileImages,
         ]);

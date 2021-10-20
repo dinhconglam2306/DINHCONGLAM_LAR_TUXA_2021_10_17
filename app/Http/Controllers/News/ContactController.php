@@ -57,9 +57,8 @@ class ContactController extends Controller
         $params = $request->all();
 
         //Send Email
-        MailContact::sendCustomer($params);
-        MailContact::sendBcc($params);
-
+        // MailContact::sendCustomer($params);
+        // MailContact::sendBcc($params);
         // Save Database
         $this->model->saveItem($params, ['task' => 'add-item']);
         return redirect()->back()->with('send_success', 'Gửi thông tin liên hệ thành công');

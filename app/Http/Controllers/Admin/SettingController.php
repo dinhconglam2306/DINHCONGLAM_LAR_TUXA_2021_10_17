@@ -34,59 +34,25 @@ class SettingController extends Controller
         ]);
     }
 
-    public function general(MainRequest $request)
+    public function save(MainRequest $request)
     {
 
         if ($request->method() == 'POST') {
             $params = $request->all();
-            unset($params['_token']);
-            unset($params['task']);
-            
-            $this->model->saveItem($params, ['task' => 'setting-general']);
-            return redirect()->route('setting',['type'=>'general'])->with("zvn_notify", 'Cập nhật thành công');
-            
-        }
-    }
-    public function emailAccount(MainRequest $request)
-    {
-
-        if ($request->method() == 'POST') {
-            $params = $request->all();
-            unset($params['_token']);
-            unset($params['task']);
-
-            $this->model->saveItem($params, ['task' => 'setting-email-account']);
-            return redirect()->route('setting',['type'=>'email'])->with("zvn_notify", 'Cập nhật thành công');
-            
-        }
-    }
-
-    public function emailBcc(MainRequest $request)
-    {
-
-        if ($request->method() == 'POST') {
-            $params = $request->all();
-            unset($params['_token']);
-            unset($params['task']);
-
-            $this->model->saveItem($params, ['task' => 'setting-email-bcc']);
-            return redirect()->route('setting',['type'=>'email'])->with("zvn_notify", 'Cập nhật thành công');
-            
-        }
-    }
-
-    public function social(MainRequest $request)
-    {
-
-        if ($request->method() == 'POST') {
-            
-            $params = $request->all();
-            unset($params['_token']);
-            unset($params['task']);
-
-            $this->model->saveItem($params, ['task' => 'setting-social']);
-            return redirect()->route('setting',['type'=>'social'])->with("zvn_notify", 'Cập nhật thành công');
-            
+            switch ($params['task']) {
+                case 'setting_email_bcc':
+                case 'setting_email_account':
+                  $type = 'email';
+                    break;
+                case 'setting_social':
+                    $type = 'social';
+                        break;
+                case 'setting_general':
+                    $type = 'general';
+                        break;
+            }
+            $this->model->saveItem($params,null);
+            return redirect()->route('setting',['type'=>$type])->with("zvn_notify", 'Cập nhật thành công');
         }
     }
 }

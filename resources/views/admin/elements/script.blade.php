@@ -14,6 +14,7 @@
 <!-- Custom Theme Scripts -->
 <script src="{{ asset('/vendor/laravel-filemanager/js/lfm.js') }}"></script>
 <script src="{{ asset('admin/js/notify.min.js') }}"></script>
+<script src="{{ asset('tagsinput/bootstrap-tagsinput.min.js') }}"></script>
 <script src="{{ asset('admin/js/custom.min.js') }}"></script>
 <script src="{{ asset('admin/js/my-js.js') }}"></script>
 

@@ -11,4 +11,5 @@
 <link rel="stylesheet" type="text/css" href="{{asset('news/js/OwlCarousel2-2.2.1/animate.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('news/css/main_styles.css')}}">
 <link rel="stylesheet" type="text/css" href="{{asset('news/css/responsive.css')}}">
+<link rel="stylesheet" type="text/css" href="{{ asset('dist/css/lightbox.min.css') }}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{{asset('news/css/my-style.css')}}">

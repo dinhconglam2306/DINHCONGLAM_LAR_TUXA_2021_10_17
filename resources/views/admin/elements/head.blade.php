@@ -17,5 +17,7 @@
 <link href="{{ asset('admin/asset/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css') }}" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="{{ asset('admin/css/custom.min.css') }}" rel="stylesheet">
+<!-- bootstrap-tagsinput -->
+<link href="{{ asset('tagsinput/bootstrap-tagsinput.css') }}" rel="stylesheet">
 <!-- Custom Theme Style -->
 <link href="{{ asset('admin/css/mycss.css') }}" rel="stylesheet">

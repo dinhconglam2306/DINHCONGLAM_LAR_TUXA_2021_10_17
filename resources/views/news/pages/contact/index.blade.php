@@ -6,11 +6,6 @@
         <div class="featured_title">
             <div class="container">
                 <div class="row">
-                @include('news.pages.templates.error')
-                </div>
-                <div class="row">
-                   
-                    @include('news.pages.templates.zvn_notify') 
                     @include('news.pages.contact.child-index.information', ['items' => $contactValue]) 
                 </div>
                 <div class="row mt-5">

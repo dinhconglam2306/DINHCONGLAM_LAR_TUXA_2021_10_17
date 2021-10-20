@@ -7,7 +7,7 @@ $formInputAttr      = config('zvn.template.form_input');
 $formLabelAttr      = config('zvn.template.form_label');
 
 
-$inputHiddenTask  = Form::hidden('task', 'email_account');
+$inputHiddenTask  = Form::hidden('task', 'setting_email_account');
 $elements = [
     [
         'label'   => Form::label('email_account', 'Email Chính', $formLabelAttr),

@@ -3,9 +3,6 @@
 namespace App\Models;
 
 use App\Models\AdminModel;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 
 class SettingModel extends AdminModel
 {
@@ -14,7 +11,7 @@ class SettingModel extends AdminModel
         $this->table               = 'setting';
         $this->folderUpload        = 'setting';
         $this->fieldSearchAccepted = ['id', 'name', 'description', 'link'];
-        $this->crudNotAccepted     = ['_token', 'id'];
+        $this->crudNotAccepted     = ['_token', 'task', 'id'];
     }
 
     public function listItems($params = null, $options = null)
@@ -53,49 +50,48 @@ class SettingModel extends AdminModel
             $result = $query->get()->toArray();
         }
 
-        
+
 
         return $result;
     }
 
-    
+
 
     public function getItem($params = null, $options = null)
     {
         $result = null;
 
 
-        if($options['task'] == 'setting-general'){
+        if ($options['task'] == 'setting-general') {
             $result = self::select('value')->where('key_value', 'setting_general')->first();
-            $result = json_decode($result['value'],true);
+            $result = json_decode($result['value'], true);
         }
 
-        if($options['task'] == 'setting-email-bcc'){
+        if ($options['task'] == 'setting-email-bcc') {
             $result = self::select('value')->where('key_value', 'setting_email_bcc')->first();
-            $result = json_decode($result['value'],true);
+            $result = json_decode($result['value'], true);
         }
 
-        if($options['task'] == 'setting-email-account'){
+        if ($options['task'] == 'setting-email-account') {
             $result = self::select('value')->where('key_value', 'setting_email_account')->first();
-            $result = json_decode($result['value'],true);
+            $result = json_decode($result['value'], true);
         }
 
-        if($options['task'] == 'setting-social'){
+        if ($options['task'] == 'setting-social') {
             $result = self::select('value')->where('key_value', 'setting_social')->first();
-            $result = json_decode($result['value'],true);
+            $result = json_decode($result['value'], true);
         }
 
-       
+
 
         // in NEWS
-        if($options['task'] == 'new-in-contact'){
-            $email  =self::select('value')->where('key_value', 'setting_email_account')->first();
-            $email = json_decode($email['value'],true);
+        if ($options['task'] == 'new-in-contact') {
+            $email  = self::select('value')->where('key_value', 'setting_email_account')->first();
+            $email = json_decode($email['value'], true);
 
             $result = self::select('value')->where('key_value', 'setting_general')->first();
-            $result = json_decode($result['value'],true);
+            $result = json_decode($result['value'], true);
             $result['email'] = $email['email_account'];
-           
         }
 
         return $result;
@@ -103,26 +99,11 @@ class SettingModel extends AdminModel
 
     public function saveItem($params = null, $options = null)
     {
-        if ($options['task'] == 'setting-general') {
-            $params = json_encode($params,JSON_UNESCAPED_UNICODE);
-            self::where('key_value', 'setting_general')->update(['value' => $params ]);
-        }
-
-        if ($options['task'] == 'setting-email-bcc') {
-            $params = json_encode($params,JSON_UNESCAPED_UNICODE);
-            self::where('key_value', 'setting_email_bcc')->update(['value' => $params ]);
-        }
-
-        if ($options['task'] == 'setting-email-account') {
-            $params['password'] = $params['password'];
-            $params = json_encode($params,JSON_UNESCAPED_UNICODE);
-            self::where('key_value', 'setting_email_account')->update(['value' => $params ]);
-        }
-
-        if ($options['task'] == 'setting-social') {
-            $params = json_encode($params,JSON_UNESCAPED_UNICODE);
-            self::where('key_value', 'setting_social')->update(['value' => $params ]);
+        if ($options == null) {
+            $key = $params['task'];
+            $params = $this->prepareParams($params);
+            $params = json_encode($params, JSON_UNESCAPED_UNICODE);
+            self::where('key_value',  $key)->update(['value' => $params]);
         }
     }
-    
 }

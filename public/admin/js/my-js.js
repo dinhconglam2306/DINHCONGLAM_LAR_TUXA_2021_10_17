@@ -103,7 +103,7 @@ $(document).ready(function () {
 
     // delete message after 2s
     let messageSuccess = $('.alert-info');
-    let messageError = $('.alert-danger');
+    let messageError = $('.alert-danger').parent();
     
    
     setTimeout(function(){

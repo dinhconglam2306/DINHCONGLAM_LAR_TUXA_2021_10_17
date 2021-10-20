@@ -143,10 +143,11 @@ Route::group(['prefix' => $prefixAdmin, 'namespace' => 'Admin', 'middleware' => 
     Route::group(['prefix' =>  $prefix], function () use ($controllerName) {
         $controller = ucfirst($controllerName)  . 'Controller@';
         Route::get('/',                      [ 'as' => $controllerName,                          'uses' => $controller . 'index']);
-        Route::post('/general-setting',       [ 'as' => $controllerName. '/general_setting',      'uses' => $controller . 'general']);
-        Route::post('/social-setting',        [ 'as' => $controllerName. '/social_setting',       'uses' => $controller . 'social']);
-        Route::post('/email-account-setting', [ 'as' => $controllerName. '/email_account_setting','uses' => $controller . 'emailAccount']);
-        Route::post('/email-bcc-setting',     [ 'as' => $controllerName. '/email_bcc_setting',    'uses' => $controller . 'emailBcc']);
+        Route::post('save',                   [ 'as' => $controllerName . '/save',        'uses' => $controller . 'save']);
+        Route::post('/general-setting',       [ 'as' => $controllerName. '/general_setting',      'uses' => $controller . 'save']);
+        Route::post('/social-setting',        [ 'as' => $controllerName. '/social_setting',       'uses' => $controller . 'save']);
+        Route::post('/email-account-setting', [ 'as' => $controllerName. '/email_account_setting','uses' => $controller . 'save']);
+        Route::post('/email-bcc-setting',     [ 'as' => $controllerName. '/email_bcc_setting',    'uses' => $controller . 'save']);
     });
 });
 

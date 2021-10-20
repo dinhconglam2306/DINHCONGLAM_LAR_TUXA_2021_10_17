@@ -5,7 +5,7 @@
                 <div class="col-lg-6">
                     <div class="post_item post_v_med d-flex flex-column align-items-start justify-content-start">
                         <div class="post_image">
-                            <a href="{{  asset("images/gallery/" .$item->getFileName())  }}" data-lightbox="roadtrip"> <img src="{{  asset("images/gallery/" . $item->getFileName())  }}" alt="{{ $item->getFileName() }}"></a>
+                            <img src="{{  asset("images/gallery/$item")  }}" alt="{{ $item }}">
                         </div>
                     </div>
                 </div>

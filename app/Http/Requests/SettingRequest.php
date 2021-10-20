@@ -39,7 +39,7 @@ class SettingRequest extends FormRequest
                     'address'       => 'bail|required|min:5',];
             break;
             case 'email_bcc':
-                $rule =['bcc'       => 'bail|required|email'];
+                $rule =['bcc'       => 'bail|required|min:5'];
             break;
             case 'email_account':
                 $rule =[
